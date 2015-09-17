@@ -1,0 +1,24 @@
+{
+  "name": "ghost-api",
+  "version": "1.0.0",
+  "description": "Unofficial API client for Ghost blogs",
+  "license": "MIT",
+  "main": "index.js",
+  "repository": "vdemedes/ghost-api",
+  "author": {
+    "name": "Vadim",
+    "email": "vdemedes@gmail.com",
+    "url": "https://github.com/vdemedes"
+  },
+  "scripts": {
+    "test": "exit 0"
+  },
+  "dependencies": {
+    "got": "^4.2.0",
+    "object-assign": "^4.0.1",
+    "pinkie-promise": "^1.0.0"
+  },
+  "devDependencies": {
+    "ava": "*"
+  }
+}
