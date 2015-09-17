@@ -6,7 +6,7 @@ Unofficial API client for Ghost blogs
 ### Installation
 
 ```
-$ npm install ghost-api --save
+$ npm install vdemedes/ghost-api --save
 ```
 
 
