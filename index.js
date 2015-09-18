@@ -4,6 +4,7 @@
  * Dependencies
  */
 
+var stringify = require('querystring').stringify;
 var Promise = require('pinkie-promise');
 var assign = require('object-assign');
 var got = require('got');
@@ -88,16 +89,15 @@ Client.prototype.posts = {};
  */
 
 Client.prototype.posts.find = function (query) {
-  var url = this.endpoint + '/posts';
-
   query = assign({}, {
     include: 'tags',
     status: 'all',
     page: 1
   }, query);
 
+  var url = this.endpoint + '/posts/?' + stringify(query);
+
   var options = this.options({
-    qs: query,
     json: true
   });
 
