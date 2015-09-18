@@ -48,6 +48,32 @@ Client.prototype.options = function (options) {
 
 
 /**
+ * Authorize via OAuth
+ */
+
+Client.prototype.authorize = function (email, password) {
+  var url = this.endpoint + '/authentication/token';
+
+  var self = this;
+
+  return req(url, {
+    method: 'post',
+    body: {
+      username: email,
+      password: password,
+      grant_type: 'password',
+      client_id: 'ghost-admin',
+      client_secret: '6e5816927c41'
+    }
+  }).then(function (res) {
+    self.token = JSON.parse(res.body).access_token;
+
+    return self.token;
+  });
+};
+
+
+/**
  * Posts API
  */
 
