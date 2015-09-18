@@ -83,11 +83,11 @@ Client.prototype.posts.find = function (query) {
 /**
  * Find all posts
  *
- * @todo
+ * @return {Array}
  */
 
 Client.prototype.posts.all = function () {
-  // TODO
+  return this.posts.find({ limit: 'all', status: 'all' });
 };
 
 
