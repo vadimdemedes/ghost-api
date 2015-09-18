@@ -22,17 +22,10 @@ module.exports = Client;
  * Unofficial API client for Ghost blogs
  */
 
-function Client (endpoint, token) {
-  if (!(this instanceof Client)) return new Client(endpoint, token);
+function Client (endpoint) {
+  if (!(this instanceof Client)) return new Client(endpoint);
 
   this.endpoint = endpoint + '/ghost/api/v0.1';
-  this.token = token;
-  this.defaultOptions = {
-    headers: {
-      'authorization': 'Bearer ' + token,
-      'content-type': 'application/json'
-    }
-  };
 
   bindAll(this, ['posts']);
 }
@@ -43,7 +36,14 @@ function Client (endpoint, token) {
  */
 
 Client.prototype.options = function (options) {
-  return assign({}, this.defaultOptions, options);
+  var defaults = {
+    headers: {
+      'authorization': 'Bearer ' + this.token,
+      'content-type': 'application/json'
+    }
+  };
+
+  return assign({}, defaults, options);
 };
 
 
