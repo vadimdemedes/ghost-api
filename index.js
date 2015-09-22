@@ -7,6 +7,7 @@
 var stringify = require('querystring').stringify;
 var Promise = require('pinkie-promise');
 var assign = require('object-assign');
+var format = require('util').format;
 var got = require('got');
 
 var json = JSON.stringify;
@@ -95,7 +96,7 @@ Client.prototype.posts.find = function (query) {
     page: 1
   }, query);
 
-  var url = this.endpoint + '/posts/?' + stringify(query);
+  var url = format('%s/posts/?%s', this.endpoint, stringify(query));
 
   var options = this.options({
     json: true
@@ -113,7 +114,10 @@ Client.prototype.posts.find = function (query) {
  */
 
 Client.prototype.posts.all = function () {
-  return this.posts.find({ limit: 'all', status: 'all' });
+  return this.posts.find({
+    limit: 'all',
+    status: 'all'
+  });
 };
 
 
@@ -125,12 +129,12 @@ Client.prototype.posts.all = function () {
  */
 
 Client.prototype.posts.findOne = function (id, query) {
-  var url;
+  var url = this.endpoint;
 
   if (typeof id === 'string') {
-    url = this.endpoint + '/posts/slug/' + id + '/?';
+    url += format('/posts/slug/%s/?', id);
   } else {
-    url = this.endpoint + '/posts/' + id + '/?';
+    url += format('/posts/%s/?', id);
   }
 
   query = assign({
@@ -192,7 +196,7 @@ Client.prototype.posts.create = function (data) {
  */
 
 Client.prototype.posts.update = function (id, data) {
-  var url = this.endpoint + '/posts/' + id;
+  var url = format('%s/posts/%s', this.endpoint, id);
 
   var options = this.options({
     method: 'put',
@@ -215,7 +219,7 @@ Client.prototype.posts.update = function (id, data) {
  */
 
 Client.prototype.posts.destroy = function (id) {
-  var url = this.endpoint + '/posts/' + id;
+  var url = format('%s/posts/%s', this.endpoint, id);
 
   var options = this.options({
     method: 'delete'
