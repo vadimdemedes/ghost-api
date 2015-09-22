@@ -124,8 +124,21 @@ Client.prototype.posts.all = function () {
  * @return {Object}
  */
 
-Client.prototype.posts.findOne = function (id) {
-  var url = this.endpoint + '/posts/' + id;
+Client.prototype.posts.findOne = function (id, query) {
+  var url;
+
+  if (typeof id === 'string') {
+    url = this.endpoint + '/posts/slug/' + id + '/?';
+  } else {
+    url = this.endpoint + '/posts/' + id + '/?';
+  }
+
+  query = assign({
+    status: 'all',
+    include: 'tags'
+  }, query);
+
+  url += stringify(query);
 
   var options = this.options({
     json: true
