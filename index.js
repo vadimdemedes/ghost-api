@@ -50,10 +50,10 @@ Client.prototype.options = function (options) {
 
 
 /**
- * Authorize via OAuth
+ * Authenticate via OAuth
  */
 
-Client.prototype.authorize = function (email, password) {
+Client.prototype.auth = function (email, password) {
   var url = this.endpoint + '/authentication/token';
 
   var self = this;
