@@ -16,7 +16,8 @@
   "dependencies": {
     "got": "^4.2.0",
     "object-assign": "^4.0.1",
-    "pinkie-promise": "^1.0.0"
+    "pinkie-promise": "^1.0.0",
+    "prepend-http": "^1.0.3"
   },
   "devDependencies": {
     "ava": "*"

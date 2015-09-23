@@ -4,6 +4,7 @@
  * Dependencies
  */
 
+var prependHttp = require('prepend-http');
 var stringify = require('querystring').stringify;
 var Promise = require('pinkie-promise');
 var assign = require('object-assign');
@@ -27,7 +28,7 @@ module.exports = Client;
 function Client (endpoint) {
   if (!(this instanceof Client)) return new Client(endpoint);
 
-  this.endpoint = endpoint + '/ghost/api/v0.1';
+  this.endpoint = prependHttp(endpoint) + '/ghost/api/v0.1';
 
   bindAll(this, ['posts']);
 }
